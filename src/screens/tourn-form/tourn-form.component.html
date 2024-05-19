@@ -1,0 +1,302 @@
+<div class="container">
+  <h2 className="text-center mb-4">ESSOS CUP - CRICKET TOURNAMENT</h2>
+  <h6 className="text-center mb-4">
+    Join us for the February 2024 tournament!
+  </h6>
+  <label className="form-label">Team Information</label>
+  <div class="row">
+    <app-input-field
+      class="col-md-3"
+      label="Team Name"
+      forName="team_name"
+      [value]="team_name"
+      (valueChange)="team_name = $event"
+    ></app-input-field>
+    <app-input-field
+      class="col-md-3"
+      label="Captain Name"
+      forName="captain_name"
+      [value]="captain_name"
+      (valueChange)="captain_name = $event"
+    ></app-input-field>
+    <app-input-field
+      class="col-md-3"
+      label="Phone Number"
+      forName="phone_number"
+      [value]="phone_number"
+      (valueChange)="phone_number = $event"
+    ></app-input-field>
+    <app-input-field
+      class="col-md-3"
+      label="Email (Optional)"
+      forName="email"
+      [value]="email"
+      (valueChange)="email = $event"
+    ></app-input-field>
+  </div>
+  
+  <label className="form-label mt-3">Address (Optional)</label>
+  <div class="row">
+    <app-input-field
+      class="col-md-3"
+      label="Address"
+      forName="address"
+      [value]="address"
+      (valueChange)="address = $event"
+    ></app-input-field>
+    <app-input-field
+      class="col-md-3"
+      label="City"
+      forName="city"
+      [value]="city"
+      (valueChange)="city = $event"
+    ></app-input-field>
+    <app-input-field
+      class="col-md-3"
+      label="State/Province"
+      forName="state"
+      [value]="state"
+      (valueChange)="state = $event"
+    ></app-input-field>
+    <app-input-field
+      class="col-md-3"
+      label="Zip / Postal Code"
+      forName="zip"
+      [value]="zip"
+      (valueChange)="zip = $event"
+    ></app-input-field>
+  </div>
+  
+  <label className="form-label mt-3">Players Information</label>
+  <div class="row">
+    <app-input-field
+      class="col-md-6"
+      label="Player 1"
+      forName="player1"
+      [value]="player1"
+      (valueChange)="player1 = $event"
+    ></app-input-field>
+    <app-input-field
+      class="col-md-6"
+      label="Mobile Number"
+      forName="player1_number"
+      [value]="player1_number"
+      (valueChange)="player1_number = $event"
+    ></app-input-field>
+
+    <app-input-field
+      class="col-md-6"
+      label="Player 2"
+      forName="player2"
+      [value]="player2"
+      (valueChange)="player2 = $event"
+    ></app-input-field>
+    <app-input-field
+      class="col-md-6"
+      label="Mobile Number"
+      forName="player2_number"
+      [value]="player2_number"
+      (valueChange)="player2_number = $event"
+    ></app-input-field>
+
+    <app-input-field
+      class="col-md-6"
+      label="Player 3"
+      forName="player3"
+      [value]="player3"
+      (valueChange)="player3 = $event"
+    ></app-input-field>
+    <app-input-field
+      class="col-md-6"
+      label="Mobile Number"
+      forName="player3_number"
+      [value]="player3_number"
+      (valueChange)="player3_number = $event"
+    ></app-input-field>
+
+    <app-input-field
+      class="col-md-6"
+      label="Player 4"
+      forName="player4"
+      [value]="player4"
+      (valueChange)="player4 = $event"
+    ></app-input-field>
+    <app-input-field
+      class="col-md-6"
+      label="Mobile Number"
+      forName="player4_number"
+      [value]="player4_number"
+      (valueChange)="player4_number = $event"
+    ></app-input-field>
+
+    <app-input-field
+      class="col-md-6"
+      label="Player 5"
+      forName="player5"
+      [value]="player5"
+      (valueChange)="player5 = $event"
+    ></app-input-field>
+    <app-input-field
+      class="col-md-6"
+      label="Mobile Number"
+      forName="player5_number"
+      [value]="player5_number"
+      (valueChange)="player5_number = $event"
+    ></app-input-field>
+
+    <app-input-field
+      class="col-md-6"
+      label="Player 6"
+      forName="player6"
+      [value]="player6"
+      (valueChange)="player6 = $event"
+    ></app-input-field>
+    <app-input-field
+      class="col-md-6"
+      label="Mobile Number"
+      forName="player6_number"
+      [value]="player6_number"
+      (valueChange)="player6_number = $event"
+    ></app-input-field>
+
+    <app-input-field
+      class="col-md-6"
+      label="Player 7"
+      forName="player7"
+      [value]="player7"
+      (valueChange)="player7 = $event"
+    ></app-input-field>
+    <app-input-field
+      class="col-md-6"
+      label="Mobile Number"
+      forName="player7_number"
+      [value]="player7_number"
+      (valueChange)="player7_number = $event"
+    ></app-input-field>
+
+    <app-input-field
+      class="col-md-6"
+      label="Player 8 (Optional)"
+      forName="player8"
+      [value]="player8"
+      (valueChange)="player8 = $event"
+    ></app-input-field>
+    <app-input-field
+      class="col-md-6"
+      label="Mobile Number"
+      forName="player8_number"
+      [value]="player8_number"
+      (valueChange)="player8_number = $event"
+    ></app-input-field>
+
+    <app-input-field
+      class="col-md-6"
+      label="Player 9 (Optional)"
+      forName="player9"
+      [value]="player9"
+      (valueChange)="player9 = $event"
+    ></app-input-field>
+    <app-input-field
+      class="col-md-6"
+      label="Mobile Number"
+      forName="player9_number"
+      [value]="player9_number"
+      (valueChange)="player9_number = $event"
+    ></app-input-field>
+
+    <app-input-field
+      class="col-md-6"
+      label="Player 10 (Optional)"
+      forName="player10"
+      [value]="player10"
+      (valueChange)="player10 = $event"
+    ></app-input-field>
+    <app-input-field
+      class="col-md-6"
+      label="Mobile Number"
+      forName="player10_number"
+      [value]="player10_number"
+      (valueChange)="player10_number = $event"
+    ></app-input-field>
+
+  </div>
+  <div className="container">
+    <h4>PAYMENT TERMS:</h4>
+    <p>
+      This registration is binding and non-refundable. ESSOS Sports
+      requires the full payment of the registration fee amount
+      within 2 days from the submission date of the form. The
+      registration fee includes cash prizes and trophies for winners
+      and runner-ups, for 2 days of the tournament.
+    </p>
+
+    <h4>TOURNAMENT AND MATCH RULES:</h4>
+
+    <ul>
+      <li>Entry Fee - 2250</li>
+      <li>Winners - Rs.10,000 And Trophies</li>
+      <li>Runner-Up - Rs.4,500</li>
+      <li>
+        Two teams who lose the semifinal will get the registration
+        fee back - Rs.2,250 each
+      </li>
+      <li>Every participating team will get a Momento.</li>
+      <li>
+        Every member of the Final Match Winners and Final Runner-Up
+        team (7-10 players) will get a Medal.
+      </li>
+    </ul>
+
+    <h5>Rules:</h5>
+
+    <ol>
+      <li>
+        All the matches will be of 5 overs, and 6 overs of
+        Semi-Finals and Final matches.
+      </li>
+      <li>
+        Only 3 Players can participate as Substitutes or Impact
+        Players.
+      </li>
+      <li>
+        Interested teams should give a minimum of 7, and a maximum
+        of 10 players' names during registrations.
+      </li>
+      <li>No STATE-LEVEL players are allowed.</li>
+      <li>
+        All the teams should be present at the venue 15 minutes
+        before their allocated times.
+      </li>
+      <li>Teams who are arriving late will be disqualified.</li>
+      <li>
+        For every new match, a new Vicky ball will be provided.
+      </li>
+      <li>
+        Umpires decision will be final. Arguments with the Umpire
+        may lead to disqualification from the tournament.
+      </li>
+      <li>No Hammer-Bats or Plastic Bats are allowed.</li>
+    </ol>
+
+    <h5>Box Cricket Rules:</h5>
+
+    <ol>
+      <li>
+        At a given time, only 7 players are allowed inside the field
+        (players can be interchanged for batting and bowling).
+      </li>
+      <li>Only Straight boundaries for 4's and 6's.</li>
+      <li>
+        Batsmen will be given out if the ball is caught after
+        touching the top net.
+      </li>
+      <li>Runs will be awarded for Wides and No-Balls.</li>
+      <li>Over-throw runs are allowed.</li>
+      <li>No runs will be given for Byes and Leg Byes.</li>
+      <li>Only CLEAN ARM BOWLING is allowed.</li>
+      <li>Only 1 bowler can bowl 2 overs.</li>
+      <li>Umpires decision will be final.</li>
+      <li>No Free-Hit for No-Balls.</li>
+    </ol>
+  </div>
+</div>

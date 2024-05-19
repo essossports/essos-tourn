@@ -1,0 +1,10 @@
+<div class="input-field">
+  <!-- <label for="{{ forName }}" class="form-label mt-4">{{ label }}</label> -->
+  <input
+    class="form-control" id="{{ forName }}"
+    placeholder="{{label}}"
+    type="text"
+    [(ngModel)]="value"
+    (ngModelChange)="valueChange.emit($event)"
+  />
+</div>

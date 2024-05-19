@@ -1,0 +1,26 @@
+<div class="container">
+  <header>
+    <h3>Upcoming Tournaments</h3>
+  </header>
+  <div *ngFor="let tournament of tournaments" class="card mb-3">
+    <div class="card-body">
+      <h4 class="card-title">{{tournament['bannerTitle']}}</h4>
+      <h6 class="text-muted card-subtitle mb-2">{{tournament['date'].toDate() | date:'dd-MM-yyyy' }}</h6>
+      <p class="card-text">
+        {{tournament['bannerDesc']}}
+      </p>
+      <p class="card-text">Last date to apply: {{tournament['bannerLastDate'].toDate() | date:'dd-MM-yyyy' }}</p>
+      <button class="btn btn-primary" type="button" routerLink="/tourn-form">Create Team</button>
+    </div>
+  </div>
+  <div  class="card mb-3">
+    <div class="card-header">
+      <h5 class="card-title">{{ tournaments.length === 0 ? "Sorry, No Tournaments at the moment" : "Would you like to request a new tournament?" }}</h5>
+    </div>
+    <div class="card-body">
+      <button class="btn btn-primary" type="button">
+        Request a tournament!
+      </button>
+    </div>
+  </div>
+</div>
