@@ -1,233 +1,156 @@
 <div class="container">
-  <h2 className="text-center mb-4">ESSOS CUP - CRICKET TOURNAMENT</h2>
-  <h6 className="text-center mb-4">
-    Join us for the February 2024 tournament!
-  </h6>
-  <label className="form-label">Team Information</label>
-  <div class="row">
-    <app-input-field
-      class="col-md-3"
-      label="Team Name"
-      forName="team_name"
-      [value]="team_name"
-      (valueChange)="team_name = $event"
-    ></app-input-field>
-    <app-input-field
-      class="col-md-3"
-      label="Captain Name"
-      forName="captain_name"
-      [value]="captain_name"
-      (valueChange)="captain_name = $event"
-    ></app-input-field>
-    <app-input-field
-      class="col-md-3"
-      label="Phone Number"
-      forName="phone_number"
-      [value]="phone_number"
-      (valueChange)="phone_number = $event"
-    ></app-input-field>
-    <app-input-field
-      class="col-md-3"
-      label="Email (Optional)"
-      forName="email"
-      [value]="email"
-      (valueChange)="email = $event"
-    ></app-input-field>
-  </div>
+  <h2 class="text-center mb-4">{{tournament?.bannerTitle}}</h2>
+  <h6 class="text-center mb-4">{{tournament?.formHeading}}</h6>
+  <form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
+    <div class="card">
+      <div class="card-header"><h5>Team Information</h5></div>
+      <div class="row card-body">
+        <div class="col-md-3">
+          <label for="captain" class="form-label">Captain Name:</label>
+          <input
+            class="form-control"
+            id="captain"
+            type="text"
+            formControlName="captain"
+          />
+        </div>
+        <div class="col-md-3">
+          <label for="mobile" class="form-label">Captain Mobile:</label>
+          <input
+            class="form-control"
+            id="mobile"
+            type="text"
+            formControlName="mobile"
+          />
+        </div>
+        <div class="col-md-3">
+          <label for="team_name" class="form-label">Team Name:</label>
+          <input
+            class="form-control"
+            id="team_name"
+            placeholder="Enter Team Name"
+            type="text"
+            formControlName="team_name"
+          />
+        </div>
+        <div class="col-md-3">
+          <label for="email" class="form-label">Email:</label>
+          <input
+            class="form-control"
+            id="email"
+            placeholder="Enter Email"
+            type="text"
+            formControlName="email"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h5 class="">Address (Optional)</h5>
+      </div>
+      <div class="row card-body" formGroupName="address">
+        <div class="col-md-3">
+          <label for="street" class="form-label">Street:</label>
+          <input
+            class="form-control"
+            id="street"
+            placeholder="Enter Street"
+            type="text"
+            formControlName="street"
+          />
+        </div>
+        <div class="col-md-3">
+          <label for="city" class="form-label">City:</label>
+          <input
+            class="form-control"
+            id="city"
+            placeholder="Enter City"
+            type="text"
+            formControlName="city"
+          />
+        </div>
+        <div class="col-md-3">
+          <label for="state" class="form-label">State:</label>
+          <input
+            class="form-control"
+            id="state"
+            placeholder="Enter State"
+            type="text"
+            formControlName="state"
+          />
+        </div>
+        <div class="col-md-3">
+          <label for="zip" class="form-label">Zip:</label>
+          <input
+            class="form-control"
+            id="zip"
+            placeholder="Enter Zip"
+            type="text"
+            formControlName="zip"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h5 class="">Players Information</h5>
+      </div>
+      <div class="row card-body">
+        <div class="col-6 p-0" formArrayName="playerName">
+          <div *ngFor="let pName of playerName.controls; let i = index">
+            <label for="pName-{{ i }}" class="form-label mt-3"
+              >Player-{{ i + 1 }} Name:</label
+            >
+            <input
+              class="form-control"
+              id="pName-{{ i }}"
+              placeholder="Enter Player Name"
+              type="text"
+              [formControlName]="i"
+            />
+          </div>
+        </div>
+        <div class="col-6 p-0" formArrayName="playerMobile">
+          <div *ngFor="let pMobile of playerMobile.controls; let i = index">
+            <label for="pNumber-{{ i }}" class="form-label mt-3"
+              >Player-{{ i + 1 }} Number:</label
+            >
+            <div class="input-group">
+              <input
+                class="form-control"
+                id="pNumber-{{ i }}"
+                placeholder="Enter Player Number"
+                type="text"
+                [formControlName]="i"
+              />
+              <button class="btn btn-danger" (click)="removePlayer(i)">
+                Remove
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-primary" type="button" (click)="addPlayer()">
+          + Add another player
+        </button>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+  </form>
   
-  <label className="form-label mt-3">Address (Optional)</label>
-  <div class="row">
-    <app-input-field
-      class="col-md-3"
-      label="Address"
-      forName="address"
-      [value]="address"
-      (valueChange)="address = $event"
-    ></app-input-field>
-    <app-input-field
-      class="col-md-3"
-      label="City"
-      forName="city"
-      [value]="city"
-      (valueChange)="city = $event"
-    ></app-input-field>
-    <app-input-field
-      class="col-md-3"
-      label="State/Province"
-      forName="state"
-      [value]="state"
-      (valueChange)="state = $event"
-    ></app-input-field>
-    <app-input-field
-      class="col-md-3"
-      label="Zip / Postal Code"
-      forName="zip"
-      [value]="zip"
-      (valueChange)="zip = $event"
-    ></app-input-field>
-  </div>
-  
-  <label className="form-label mt-3">Players Information</label>
-  <div class="row">
-    <app-input-field
-      class="col-md-6"
-      label="Player 1"
-      forName="player1"
-      [value]="player1"
-      (valueChange)="player1 = $event"
-    ></app-input-field>
-    <app-input-field
-      class="col-md-6"
-      label="Mobile Number"
-      forName="player1_number"
-      [value]="player1_number"
-      (valueChange)="player1_number = $event"
-    ></app-input-field>
+  <div class="container" [innerHTML]="safeHtml"></div>
 
-    <app-input-field
-      class="col-md-6"
-      label="Player 2"
-      forName="player2"
-      [value]="player2"
-      (valueChange)="player2 = $event"
-    ></app-input-field>
-    <app-input-field
-      class="col-md-6"
-      label="Mobile Number"
-      forName="player2_number"
-      [value]="player2_number"
-      (valueChange)="player2_number = $event"
-    ></app-input-field>
-
-    <app-input-field
-      class="col-md-6"
-      label="Player 3"
-      forName="player3"
-      [value]="player3"
-      (valueChange)="player3 = $event"
-    ></app-input-field>
-    <app-input-field
-      class="col-md-6"
-      label="Mobile Number"
-      forName="player3_number"
-      [value]="player3_number"
-      (valueChange)="player3_number = $event"
-    ></app-input-field>
-
-    <app-input-field
-      class="col-md-6"
-      label="Player 4"
-      forName="player4"
-      [value]="player4"
-      (valueChange)="player4 = $event"
-    ></app-input-field>
-    <app-input-field
-      class="col-md-6"
-      label="Mobile Number"
-      forName="player4_number"
-      [value]="player4_number"
-      (valueChange)="player4_number = $event"
-    ></app-input-field>
-
-    <app-input-field
-      class="col-md-6"
-      label="Player 5"
-      forName="player5"
-      [value]="player5"
-      (valueChange)="player5 = $event"
-    ></app-input-field>
-    <app-input-field
-      class="col-md-6"
-      label="Mobile Number"
-      forName="player5_number"
-      [value]="player5_number"
-      (valueChange)="player5_number = $event"
-    ></app-input-field>
-
-    <app-input-field
-      class="col-md-6"
-      label="Player 6"
-      forName="player6"
-      [value]="player6"
-      (valueChange)="player6 = $event"
-    ></app-input-field>
-    <app-input-field
-      class="col-md-6"
-      label="Mobile Number"
-      forName="player6_number"
-      [value]="player6_number"
-      (valueChange)="player6_number = $event"
-    ></app-input-field>
-
-    <app-input-field
-      class="col-md-6"
-      label="Player 7"
-      forName="player7"
-      [value]="player7"
-      (valueChange)="player7 = $event"
-    ></app-input-field>
-    <app-input-field
-      class="col-md-6"
-      label="Mobile Number"
-      forName="player7_number"
-      [value]="player7_number"
-      (valueChange)="player7_number = $event"
-    ></app-input-field>
-
-    <app-input-field
-      class="col-md-6"
-      label="Player 8 (Optional)"
-      forName="player8"
-      [value]="player8"
-      (valueChange)="player8 = $event"
-    ></app-input-field>
-    <app-input-field
-      class="col-md-6"
-      label="Mobile Number"
-      forName="player8_number"
-      [value]="player8_number"
-      (valueChange)="player8_number = $event"
-    ></app-input-field>
-
-    <app-input-field
-      class="col-md-6"
-      label="Player 9 (Optional)"
-      forName="player9"
-      [value]="player9"
-      (valueChange)="player9 = $event"
-    ></app-input-field>
-    <app-input-field
-      class="col-md-6"
-      label="Mobile Number"
-      forName="player9_number"
-      [value]="player9_number"
-      (valueChange)="player9_number = $event"
-    ></app-input-field>
-
-    <app-input-field
-      class="col-md-6"
-      label="Player 10 (Optional)"
-      forName="player10"
-      [value]="player10"
-      (valueChange)="player10 = $event"
-    ></app-input-field>
-    <app-input-field
-      class="col-md-6"
-      label="Mobile Number"
-      forName="player10_number"
-      [value]="player10_number"
-      (valueChange)="player10_number = $event"
-    ></app-input-field>
-
-  </div>
-  <div className="container">
+  <!-- <div class="container">
     <h4>PAYMENT TERMS:</h4>
     <p>
-      This registration is binding and non-refundable. ESSOS Sports
-      requires the full payment of the registration fee amount
-      within 2 days from the submission date of the form. The
-      registration fee includes cash prizes and trophies for winners
-      and runner-ups, for 2 days of the tournament.
+      This registration is binding and non-refundable. ESSOS Sports requires the
+      full payment of the registration fee amount within 2 days from the
+      submission date of the form. The registration fee includes cash prizes and
+      trophies for winners and runner-ups, for 2 days of the tournament.
     </p>
 
     <h4>TOURNAMENT AND MATCH RULES:</h4>
@@ -237,13 +160,13 @@
       <li>Winners - Rs.10,000 And Trophies</li>
       <li>Runner-Up - Rs.4,500</li>
       <li>
-        Two teams who lose the semifinal will get the registration
-        fee back - Rs.2,250 each
+        Two teams who lose the semifinal will get the registration fee back -
+        Rs.2,250 each
       </li>
       <li>Every participating team will get a Momento.</li>
       <li>
-        Every member of the Final Match Winners and Final Runner-Up
-        team (7-10 players) will get a Medal.
+        Every member of the Final Match Winners and Final Runner-Up team (7-10
+        players) will get a Medal.
       </li>
     </ul>
 
@@ -251,29 +174,24 @@
 
     <ol>
       <li>
-        All the matches will be of 5 overs, and 6 overs of
-        Semi-Finals and Final matches.
+        All the matches will be of 5 overs, and 6 overs of Semi-Finals and Final
+        matches.
       </li>
+      <li>Only 3 Players can participate as Substitutes or Impact Players.</li>
       <li>
-        Only 3 Players can participate as Substitutes or Impact
-        Players.
-      </li>
-      <li>
-        Interested teams should give a minimum of 7, and a maximum
-        of 10 players' names during registrations.
+        Interested teams should give a minimum of 7, and a maximum of 10
+        players' names during registrations.
       </li>
       <li>No STATE-LEVEL players are allowed.</li>
       <li>
-        All the teams should be present at the venue 15 minutes
-        before their allocated times.
+        All the teams should be present at the venue 15 minutes before their
+        allocated times.
       </li>
       <li>Teams who are arriving late will be disqualified.</li>
+      <li>For every new match, a new Vicky ball will be provided.</li>
       <li>
-        For every new match, a new Vicky ball will be provided.
-      </li>
-      <li>
-        Umpires decision will be final. Arguments with the Umpire
-        may lead to disqualification from the tournament.
+        Umpires decision will be final. Arguments with the Umpire may lead to
+        disqualification from the tournament.
       </li>
       <li>No Hammer-Bats or Plastic Bats are allowed.</li>
     </ol>
@@ -282,13 +200,13 @@
 
     <ol>
       <li>
-        At a given time, only 7 players are allowed inside the field
-        (players can be interchanged for batting and bowling).
+        At a given time, only 7 players are allowed inside the field (players
+        can be interchanged for batting and bowling).
       </li>
       <li>Only Straight boundaries for 4's and 6's.</li>
       <li>
-        Batsmen will be given out if the ball is caught after
-        touching the top net.
+        Batsmen will be given out if the ball is caught after touching the top
+        net.
       </li>
       <li>Runs will be awarded for Wides and No-Balls.</li>
       <li>Over-throw runs are allowed.</li>
@@ -298,5 +216,5 @@
       <li>Umpires decision will be final.</li>
       <li>No Free-Hit for No-Balls.</li>
     </ol>
-  </div>
+  </div> -->
 </div>
