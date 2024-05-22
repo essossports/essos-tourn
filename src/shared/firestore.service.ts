@@ -48,6 +48,16 @@ export class FirestoreService {
     }
   }
 
+  async getLandingTournament() {
+    console.log('firestore getLandingTournament');
+    const q = query(
+      collection(this.db, 'tournament'),
+      where("isLanding", '==', true)
+    ).withConverter(tournamentConverter);
+    const querySnapshot = await getDocs(q);
+    return querySnapshot;
+  }
+
   async createTournTeam(data: TournTeam) {
     console.log('firestore createTournTeam');
     const collectionRef = collection(this.db, 'tournTeam').withConverter(tournTeamConverter);

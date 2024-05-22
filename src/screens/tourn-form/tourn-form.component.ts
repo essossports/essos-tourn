@@ -34,6 +34,21 @@ export class TournFormComponent implements OnInit {
   tournTeam?: TournTeam;
   tournament?: Tournament;
   safeHtml?: SafeHtml;
+  teamForm = this.formBuilder.group({
+    captain: [''],
+    mobile: [{ value: '', disabled: true }],
+    team_name: ['', Validators.required],
+    email: [''],
+    address: this.formBuilder.group({
+      street: [''],
+      city: [''],
+      state: [''],
+      zip: [''],
+    }),
+    playerName: this.formBuilder.array([this.formBuilder.control('')]),
+    playerMobile: this.formBuilder.array([this.formBuilder.control('')]),
+  });
+
 
   ngOnInit() {
     this.getTournTeam();
@@ -41,7 +56,7 @@ export class TournFormComponent implements OnInit {
 
   async getTournTeam() {
     this.loadingService.show();
-    this.sharedService.tournFormId = 'dbZ6rumWOTROhf48XlGD';
+    // this.sharedService.tournFormId = 'dbZ6rumWOTROhf48XlGD';
     this.tournTeam = await this.firestoreService.getTournTeam(
       this.sharedService.tournFormId
     );
@@ -76,20 +91,7 @@ export class TournFormComponent implements OnInit {
     this.loadingService.hide();
   }
 
-  teamForm = this.formBuilder.group({
-    captain: [''],
-    mobile: [''],
-    team_name: ['', Validators.required],
-    email: [''],
-    address: this.formBuilder.group({
-      street: [''],
-      city: [''],
-      state: [''],
-      zip: [''],
-    }),
-    playerName: this.formBuilder.array([this.formBuilder.control('')]),
-    playerMobile: this.formBuilder.array([this.formBuilder.control('')]),
-  });
+  
 
   get playerName() {
     return this.teamForm.get('playerName') as FormArray;
@@ -108,6 +110,7 @@ export class TournFormComponent implements OnInit {
   }
 
   populateTournTeam() {
+    this.tournTeam!.captainName = this.teamForm.value.captain ?? '';
     this.tournTeam!.teamName = this.teamForm.value.team_name ?? '';
     this.tournTeam!.email = this.teamForm.value.email ?? '';
     this.tournTeam!.address = this.teamForm.value.address?.street ?? '';
@@ -127,7 +130,6 @@ export class TournFormComponent implements OnInit {
   }
 
   async onSubmit() {
-    // TODO: Use EventEmitter with form value
     console.warn(this.teamForm.value);
     this.populateTournTeam();
     await this.firestoreService.updateTournTeam(

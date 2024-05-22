@@ -1,0 +1,26 @@
+<div
+  *ngIf="sharedService.landing"
+  class="landing-page d-flex align-items-center justify-content-center"
+>
+  <button class="btn btn-secondary close-button" (click)="closeLanding()">
+    Close
+  </button>
+  <div class="text-center text-white">
+    <h1 class="display-4">{{tournament.bannerTitle}}</h1>
+    <p class="lead">
+      {{tournament.bannerDesc}}
+    </p>
+    <button class="btn btn-primary btn-lg" (click)="applyNow()">Apply Now</button>
+  </div>
+</div>
+
+<div *ngIf="isLoading" class="landing-page d-flex align-items-center justify-content-center">
+  <div class="text-center text-white">
+    <h1 class="display-4">ESSOS SPORTS ARENA</h1>
+  </div>
+</div>
+
+<app-home *ngIf="!sharedService.landing"></app-home>
+
+
+<app-tournament-apply-modal></app-tournament-apply-modal>
